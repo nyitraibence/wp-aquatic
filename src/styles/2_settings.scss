@@ -1,0 +1,35 @@
+// -----
+// Start with the more generic, higher level DOM elenments/tags, and work your way down
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body{
+    // -----
+    // consider setting a max-width for a container element (such as the body), 
+    // so that the page's appearance is consistent on large screens, too.
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+#main {
+    flex: 1 0 auto;
+}
+
+#footer {
+    flex-shrink: 0;
+}
+
+// -----
+// Element styling
