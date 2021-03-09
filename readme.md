@@ -65,7 +65,7 @@ The project is optimal for classic site building, and Wordpress theme developmen
 ***
 
 WP part:
-add **define( 'WP_ENVIRONMENT_TYPE', 'development' );** to wp-config.php
+add `define( 'WP_ENVIRONMENT_TYPE', 'development' );` to wp-config.php
 
 Plugins:
 Velvet Blues Update URLs
