@@ -64,15 +64,16 @@ The project is optimal for classic site building, and Wordpress theme developmen
 
 ***
 
-WP part:
+## WP part:
+
 add `define( 'WP_ENVIRONMENT_TYPE', 'development' );` to wp-config.php
 
 Plugins:
-Velvet Blues Update URLs
-Classic Editor
-ACF
+- Velvet Blues Update URLs
+- Classic Editor
+- ACF
 
 Post-deployment plugins:
-W3 Total Cache
-Yoast SEO
-Wordfence
+- W3 Total Cache
+- Yoast SEO
+- Wordfence
