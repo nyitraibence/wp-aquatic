@@ -11,3 +11,5 @@ require_once 'functions/include-scripts.php';
 require_once 'functions/bs4navwalker.php';
 
 require_once 'functions/custom-admin-login.php';
+
+require_once 'functions/remove-comments.php';
