@@ -11,15 +11,14 @@ html, body {
 }
 
 body{
+    display: flex;
+    flex-direction: column;
     // -----
     // consider setting a max-width for a container element (such as the body), 
     // so that the page's appearance is consistent on large screens, too.
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
 }
 
 

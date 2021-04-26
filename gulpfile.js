@@ -9,7 +9,7 @@ const clean = require('gulp-clean');
 const imagemin = require('gulp-imagemin');
 const changed = require('gulp-changed');
 var changedInPlace = require('gulp-changed-in-place');
-var php = require('gulp-connect-php');
+// var php = require('gulp-connect-php');
 const browsersync = require('browser-sync').create();
 
 
@@ -20,12 +20,20 @@ const paths = {
         src: "./src/styles/**/*.scss",
         dest: "./assets/css/"
     },
+    cssVendors: {
+        src: "./src/styles/vendors/*.css",
+        dest: "./assets/css/"
+    },
     js: {
-        src: "./src/js/**/*.js",
+        src: "./src/js/*.js",
+        dest: "./assets/js/"
+    },
+    jsVendors: {
+        src: "./src/js/vendors/*.js",
         dest: "./assets/js/"
     },
     img: {
-        src: ["./src/img/**/*.png", "./src/img/**/*.jpg"],
+        src: ["./assets/img/raw/*.png", "./assets/img/raw/*.jpg"],
         dest: "./assets/img/"
     },
     html: {
@@ -46,8 +54,7 @@ const filenames = {
 function clear() {
     return src(paths.assets, {
         read: false
-    })
-        .pipe(clean());
+    }).pipe(clean());
 }
 
 // Optimize images
@@ -83,6 +90,18 @@ function minifyCSS() {
             }
         }))
         .pipe(dest(paths.styles.dest));
+}	
+
+// CSS Vendors
+function cssVendors() {
+    return src(paths.cssVendors.src)
+        .pipe(concat('mainVendor.min.css'))
+        .pipe(cssnano({
+            autoprefixer: {
+                remove: false
+            }
+        }))
+        .pipe(dest(paths.cssVendors.dest));
 }
 
 // JS 
@@ -105,6 +124,17 @@ function minifyJS() {
         .pipe(dest(paths.js.dest));
 }
 
+// JS vendors
+function jsVendors() {
+    return src(paths.jsVendors.src)
+        .pipe(concat('mainVendor.js'))
+        .pipe(terser())
+        .pipe(rename({
+            extname: '.min.js'
+        }))
+        .pipe(dest(paths.jsVendors.dest));
+}
+
 // HTML function 
 function streamHTML() {
     return src(paths.html.src)
@@ -122,7 +152,10 @@ function streamPHP() {
 // Watch files 
 function watchFiles() {
     watch(paths.styles.src, css);
+    watch(paths.cssVendors.src, cssVendors);
     watch(paths.js.src, js);
+    watch(paths.jsVendors.src, jsVendors);
+    watch(paths.img.src, img);
     watch(paths.html.src, streamHTML);
     watch(paths.php.src, streamPHP);
 }
@@ -145,7 +178,8 @@ function browserSync() {
 
 // Complex tasks
 const dev = parallel(browserSync, /*runPHP,*/ watchFiles);
-const build = series(clear, parallel(series(css, minifyCSS), series(js, minifyJS), img));
+const build = series(/* clear, */ parallel(series(css, minifyCSS), series(js, minifyJS), cssVendors, jsVendors, img));
+const vendors = parallel(jsVendors, cssVendors);
 
 
 // Export tasks
@@ -153,6 +187,7 @@ exports.clear = clear;
 exports.img = img;
 exports.watch = dev;
 exports.default = build;
+exports.vendors = vendors;
 
 
 // These exported tasks are considered 'public' 

@@ -10,7 +10,6 @@ function theme_setup(){
 
     // Register WordPress nav menu
     register_nav_menu('header', 'Header menu');
-    register_nav_menu('footer', 'Footer menu');
 
 }
 add_action('after_setup_theme', 'theme_setup');

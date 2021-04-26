@@ -10,6 +10,12 @@ require_once 'functions/include-scripts.php';
 
 require_once 'functions/bs4navwalker.php';
 
-require_once 'functions/custom-admin-login.php';
+require_once 'functions/enable-svg.php';
+
+require_once 'functions/admin-login-style.php';
+
+require_once 'functions/admin-style.php';
 
 require_once 'functions/remove-comments.php';
+
+require_once 'functions/remove-tax.php';
