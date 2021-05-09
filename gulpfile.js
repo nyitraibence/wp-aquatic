@@ -179,7 +179,6 @@ function browserSync() {
 // Complex tasks
 const dev = parallel(browserSync, /*runPHP,*/ watchFiles);
 const build = series(/* clear, */ parallel(series(css, minifyCSS), series(js, minifyJS), cssVendors, jsVendors, img));
-const vendors = parallel(jsVendors, cssVendors);
 
 
 // Export tasks
@@ -187,7 +186,6 @@ exports.clear = clear;
 exports.img = img;
 exports.watch = dev;
 exports.default = build;
-exports.vendors = vendors;
 
 
 // These exported tasks are considered 'public' 
