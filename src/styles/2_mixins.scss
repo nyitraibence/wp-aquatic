@@ -27,3 +27,17 @@
         outline: 0;
     }
 }
+
+@mixin font-sizes($desktop, $tablet, $mobile){
+    
+    font-size: $mobile;
+    
+    @media (min-width: 576px) {
+        font-size: $tablet;
+    }
+
+    @media (min-width: 992px) {
+        font-size: $desktop;
+    }
+    
+}

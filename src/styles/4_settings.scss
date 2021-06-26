@@ -11,14 +11,20 @@ html, body {
 }
 
 body{
-    display: flex;
-    flex-direction: column;
     // -----
     // consider setting a max-width for a container element (such as the body), 
     // so that the page's appearance is consistent on large screens, too.
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    font-size: 16px;
+    
+    *{
+        line-height: 1.5em;
+    }
 }
 
 
@@ -32,3 +38,59 @@ body{
 
 // -----
 // Element styling
+b,
+strong {
+	font-weight: bold;
+}
+
+hr{
+    height: 1px;
+    border-width: 0;
+    margin: 0;
+    color: #DEDEDE;
+    background-color: #DEDEDE;
+}
+
+a, button{
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a, button, input, textarea, select{
+    @include hide-focus-outlines();
+}
+
+// Headers
+h1, h2, h3, h4, h5, h6{
+    font-style: normal;
+    line-height: 1.21em;
+    font-weight: bold;
+}
+
+
+h1, .h1{
+    @include font-sizes(76px, 58px, 34px);
+}
+
+h2, .h2{
+    @include font-sizes(64px, 46px, 31px);
+}
+
+h3, .h3{
+    @include font-sizes(42px, 36px, 28px);
+}
+
+h4{
+    @include font-sizes(32px, 28px, 24px);
+}
+
+h5{
+    @include font-sizes(20px, 20px, 18px);
+}
+
+h6{
+    font-size: 16px;
+}
